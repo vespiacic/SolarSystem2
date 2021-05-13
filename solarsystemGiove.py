@@ -68,6 +68,7 @@ class SolarSystem:
                 #ax.annotate(p.name,(p.r[0],p.r[1]),(p.r[0],p.r[1]*1.1))
                 scarto=p.v[1]/abs(p.v[1]) #non funziona, scarto fisso alla riga sotto
                 p.annotation.set_position(p.r + 0.03)
+                if len(p.name)>20: p.annotation.set_va('center')
             else :
                 lung=0.6*(p.r[0]**2+p.r[1]**2)**.5
                 if p.name=='New Horizons': lung=lung*1.15 #da usare solo fin quando New Horizons e Voygar 2 sono quasi allineati con la Terra
@@ -79,12 +80,8 @@ class SolarSystem:
                 p.ys.append(b*0.8)
                 p.annotation.set_position(fine)
                 p.annotation.set_ha('center')
-                p.annotation.update(arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
-                #p.annotation=ax.annotate(text=p.name, xy=inizio, xytext=fine,ha='center', arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
-                #p.annotation.set_position((p.r[0],p.r[1])/lung)
-                #p.freccia.arrow_patch.set_color('red')
-                #p.freccia.set_x(p.r[0])
-                #p.freccia.set_y(p.r[1])
+                #p.annotation.update(arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
+                p.annotation=ax.annotate(text=p.name, xy=inizio, xytext=fine,ha='center', arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
             plots.append(p.plot)
             lines.append(p.line)
             annotations.append(p.annotation)
@@ -148,10 +145,10 @@ ani = animation.FuncAnimation(
     interval=200,
 )
 
-plt.show() #output IDE
+#plt.show() #output IDE
 
-#writergif = animation.PillowWriter(fps=7)   #output gif scrittura
-#ani.save('solarsystem.gif', writer=writergif) #output gif file
+writergif = animation.PillowWriter(fps=7)   #output gif scrittura
+ani.save('solarsystem.gif', writer=writergif) #output gif file
 
 #writervideo = animation.FFMpegWriter(fps=30)  #output mp4 writer
 #ani.save('solarsystemfullmay.mp4', writer=writervideo) #output mp4 file
