@@ -79,7 +79,7 @@ class SolarSystem:
                 p.ys.append(b*0.8)
                 p.annotation.set_position(fine)
                 p.annotation.set_ha('center')
-                p.annotation.update(arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
+                #p.annotation.update(arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
                 #p.annotation=ax.annotate(text=p.name, xy=inizio, xytext=fine,ha='center', arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
                 #p.annotation.set_position((p.r[0],p.r[1])/lung)
                 #p.freccia.arrow_patch.set_color('red')
