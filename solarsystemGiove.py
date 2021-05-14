@@ -27,7 +27,7 @@ class Object:  # define the objects: the Sun, Earth, Mercury, etc
                                zorder=10)
         self.line, = ax.plot([], [], color=color, linewidth=1.4)
         self.annotation= ax.annotate(text=name, xy=(r[0],r[1]), xytext=(r[0],r[1]))
-        #self.freccia = ax.annotate(text=name, xy=(0,0), xytext=(0,0),arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
+        self.freccia = ax.annotate(text=name, xy=(7,7), xytext=(7,7),arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
 
 
 class SolarSystem:
@@ -76,12 +76,12 @@ class SolarSystem:
                 b=p.r[1]/lung
                 inizio=(a*0.8,b*0.8)
                 fine=(a,b)
-                p.xs.append(a*0.8)
-                p.ys.append(b*0.8)
-                p.annotation.set_position(fine)
-                p.annotation.set_ha('center')
+                p.freccia.set_ha('center')
                 #p.annotation.update(arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
-                p.annotation=ax.annotate(text=p.name, xy=inizio, xytext=fine,ha='center', arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
+                #p.annotation=ax.annotate(text=p.name, xy=(0,0), xytext=(1,1),ha='center', arrowprops=dict(arrowstyle='<-', color='white',lw=0.5,ls='-'))
+                #p.annotation.set_position(inizio)
+                p.freccia.xyann = fine
+                p.freccia.xy=inizio
             plots.append(p.plot)
             lines.append(p.line)
             annotations.append(p.annotation)
@@ -147,8 +147,8 @@ ani = animation.FuncAnimation(
 
 #plt.show() #output IDE
 
-writergif = animation.PillowWriter(fps=7)   #output gif scrittura
-ani.save('solarsystem.gif', writer=writergif) #output gif file
+#writergif = animation.PillowWriter(fps=7)   #output gif scrittura
+#ani.save('solarsystem.gif', writer=writergif) #output gif file
 
-#writervideo = animation.FFMpegWriter(fps=30)  #output mp4 writer
-#ani.save('solarsystemfullmay.mp4', writer=writervideo) #output mp4 file
+writervideo = animation.FFMpegWriter(fps=30)  #output mp4 writer
+ani.save('solarsystemfullmay.mp4', writer=writervideo) #output mp4 file
